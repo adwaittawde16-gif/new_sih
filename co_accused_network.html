@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Co-Accused Network (Top 8 Suspects)</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0d1117; font-family: 'Segoe UI', Arial, sans-serif; overflow: hidden; }
+  #title { position: absolute; top: 12px; left: 20px; color: #58a6ff; font-size: 1.1rem; font-weight: 600; }
+  #stats { position: absolute; top: 40px; left: 20px; color: #8b949e; font-size: 0.78rem; }
+  #tooltip {
+    position: absolute; background: #161b22; border: 1px solid #30363d;
+    border-radius: 8px; padding: 10px 14px; color: #e6edf3; font-size: 0.82rem;
+    pointer-events: none; display: none; max-width: 280px; line-height: 1.5;
+  }
+  #legend { position: absolute; bottom: 20px; left: 20px; }
+  .leg-item { display: flex; align-items: center; gap: 8px; color: #8b949e; font-size: 0.75rem; margin-bottom: 4px; }
+  .leg-dot { width: 12px; height: 12px; border-radius: 50%; }
+  svg { width: 100vw; height: 100vh; }
+  line { stroke-opacity: 0.45; }
+</style>
+</head>
+<body>
+<div id="title">&#x1F46A; Co-Accused Network (Top 8 Suspects)</div>
+<div id="stats">Nodes: 8 &nbsp;|&nbsp; Edges: 4</div>
+<div id="tooltip"></div>
+<svg id="graph"></svg>
+<div id="legend">
+  <div class="leg-item"><div class="leg-dot" style="background:#3fb950"></div> Low connectivity</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#d29922"></div> Medium</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#f85149"></div> High (Central Node)</div>
+</div>
+<script>
+const nodes = [{"id": 0, "name": "Md. Ansh Sandal", "degree": 1, "group": 1}, {"id": 1, "name": "Md. Karan Mistry", "degree": 1, "group": 1}, {"id": 2, "name": "Md. Laban Sidhu", "degree": 1, "group": 1}, {"id": 3, "name": "Md. Nihal Rana", "degree": 1, "group": 1}, {"id": 4, "name": "Md. Reyansh Anne", "degree": 1, "group": 1}, {"id": 5, "name": "Md. Simon Rai", "degree": 1, "group": 1}, {"id": 6, "name": "Md. Umang Sabharwal", "degree": 1, "group": 1}, {"id": 7, "name": "Md. Zaid Nair", "degree": 1, "group": 1}];
+const links = [{"source": 4, "target": 5, "firs": "0481/2026", "weight": 9}, {"source": 3, "target": 6, "firs": "0734/2026", "weight": 9}, {"source": 2, "target": 7, "firs": "0460/2026", "weight": 9}, {"source": 0, "target": 1, "firs": "0777/2026", "weight": 9}];
+
+const colorScale = d3.scaleOrdinal()
+  .domain([0,1,2,3,4,5])
+  .range(['#3fb950','#58a6ff','#a5d6ff','#d29922','#f0883e','#f85149']);
+
+const svg = d3.select('#graph');
+const W = window.innerWidth, H = window.innerHeight;
+
+const sim = d3.forceSimulation(nodes)
+  .force('link', d3.forceLink(links).id(d => d.id).distance(d => 80 / (d.weight || 1)))
+  .force('charge', d3.forceManyBody().strength(-180))
+  .force('center', d3.forceCenter(W/2, H/2))
+  .force('collision', d3.forceCollide(22));
+
+const link = svg.append('g').selectAll('line')
+  .data(links).enter().append('line')
+  .attr('stroke', d => d.weight > 1 ? '#f85149' : '#30363d')
+  .attr('stroke-width', d => Math.min(d.weight * 1.2, 5));
+
+const node = svg.append('g').selectAll('circle')
+  .data(nodes).enter().append('circle')
+  .attr('r', d => 8 + Math.min(d.degree * 2, 18))
+  .attr('fill', d => colorScale(d.group))
+  .attr('stroke', '#0d1117').attr('stroke-width', 2)
+  .call(d3.drag()
+    .on('start', (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+    .on('drag', (e, d) => { d.fx = e.x; d.fy = e.y; })
+    .on('end', (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+const label = svg.append('g').selectAll('text')
+  .data(nodes).enter().append('text')
+  .text(d => d.name.replace('Md. ', ''))
+  .attr('font-size', '9px').attr('fill', '#8b949e')
+  .attr('text-anchor', 'middle').attr('dy', d => -12 - Math.min(d.degree, 9));
+
+const tooltip = d3.select('#tooltip');
+node.on('mouseover', (e, d) => {
+    const co = links.filter(l => l.source.id === d.id || l.target.id === d.id);
+    tooltip.style('display','block')
+      .html(`<strong>${d.name}</strong><br>Co-accused: ${d.degree}<br>Shared FIRs: ${co.map(l => l.firs.join(', ')).join('; ')}`);
+  })
+  .on('mousemove', e => tooltip.style('left', (e.pageX+14)+'px').style('top', (e.pageY-28)+'px'))
+  .on('mouseout', () => tooltip.style('display','none'));
+
+sim.on('tick', () => {
+  link.attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+      .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+  node.attr('cx', d => d.x).attr('cy', d => d.y);
+  label.attr('x', d => d.x).attr('y', d => d.y);
+});
+</script>
+</body>
+</html>

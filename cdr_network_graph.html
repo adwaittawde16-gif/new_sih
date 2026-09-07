@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDR & CCTV Intelligence Network Graph</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: #f8fafc;
+            overflow: hidden;
+        }
+        #header {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 15px 25px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            backdrop-filter: blur(8px);
+        }
+        h1 { margin: 0 0 5px 0; font-size: 22px; color: #38bdf8; }
+        p { margin: 0; font-size: 13px; color: #94a3b8; }
+        #legend {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.85);
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #334155;
+            font-size: 12px;
+        }
+        .legend-item { display: flex; align-items: center; margin-bottom: 6px; }
+        .legend-color { width: 14px; height: 14px; border-radius: 50%; margin-right: 8px; }
+        #details {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            width: 320px;
+            z-index: 10;
+            background: rgba(15, 23, 42, 0.9);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #334155;
+            backdrop-filter: blur(8px);
+            display: none;
+        }
+        #details h3 { margin-top: 0; color: #f43f5e; border-bottom: 1px solid #334155; padding-bottom: 8px; }
+        svg { width: 100vw; height: 100vh; }
+        .node { cursor: pointer; stroke: #fff; stroke-width: 1.5px; }
+        .link { stroke-opacity: 0.7; }
+        .link.meeting { stroke: #ef4444; stroke-width: 3px; stroke-dasharray: 4; }
+        .link.normal { stroke: #38bdf8; }
+        text { font-size: 10px; fill: #cbd5e1; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>🕵️ CDR & CCTV Network Topology</h1>
+        <p>Red Dashed Links = Confirmed CCTV Physical Meetings | Node Color = Threat Score</p>
+    </div>
+
+    <div id="legend">
+        <div class="legend-item"><div class="legend-color" style="background:#ef4444;"></div> High Threat Score (&gt; 70)</div>
+        <div class="legend-item"><div class="legend-color" style="background:#f59e0b;"></div> Medium Threat Score (40 - 70)</div>
+        <div class="legend-item"><div class="legend-color" style="background:#10b981;"></div> Low Threat Score (&lt; 40)</div>
+        <div class="legend-item"><span style="color:#ef4444; font-weight:bold; margin-right:6px;">- - -</span> Confirmed Physical Meeting</div>
+    </div>
+
+    <div id="details">
+        <h3 id="det-name">Suspect Details</h3>
+        <p><strong>Phone:</strong> <span id="det-phone"></span></p>
+        <p><strong>Threat Score:</strong> <span id="det-score" style="font-weight:bold; color:#ef4444;"></span> / 100</p>
+        <p><strong>Active Network Connections:</strong> <span id="det-conn"></span></p>
+    </div>
+
+    <svg id="graph"></svg>
+
+    <script>
+        const data = {"nodes": [{"id": "Md. Ranbir Bhalla", "score": 86.6, "phone": "+91-2236381844", "connections": 4}, {"id": "Md. Vedant Padmanabhan", "score": 38.5, "phone": "+91-2530358841", "connections": 2}, {"id": "Md. Pranit Arya", "score": 63.0, "phone": "+91-7774789752", "connections": 2}, {"id": "Md. Christopher Pillai", "score": 48.5, "phone": "+91-4293362242", "connections": 2}, {"id": "Md. Robert Narain", "score": 50.5, "phone": "+91-0909634931", "connections": 2}, {"id": "Md. Advik Golla", "score": 79.1, "phone": "+91-0751400478", "connections": 2}, {"id": "Md. Darsh Sampath", "score": 70.6, "phone": "+91-7458410398", "connections": 2}, {"id": "Md. Maanav Tailor", "score": 36.5, "phone": "+91-4860124675", "connections": 2}, {"id": "Md. Umang Mody", "score": 48.5, "phone": "+91-0953911949", "connections": 3}, {"id": "Md. Harish Bali", "score": 36.5, "phone": "+91-6463599241", "connections": 2}, {"id": "Md. Harrison Sarna", "score": 36.5, "phone": "+91-0277658032", "connections": 2}, {"id": "Md. Azad Mannan", "score": 81.8, "phone": "+91-8472516266", "connections": 2}, {"id": "Md. Indrajit Kunda", "score": 67.8, "phone": "+91-6926567843", "connections": 2}, {"id": "Md. George Ramaswamy", "score": 32.7, "phone": "+91-0077344960", "connections": 2}, {"id": "Md. Teerth Bhargava", "score": 66.5, "phone": "+91-7611970993", "connections": 4}, {"id": "Md. Samar Nagar", "score": 60.7, "phone": "+91-3604313547", "connections": 2}, {"id": "Md. Zashil Mistry", "score": 70.5, "phone": "+91-0356058771", "connections": 2}, {"id": "Md. Balendra Nayak", "score": 72.3, "phone": "+91-7309005344", "connections": 2}, {"id": "Md. Tarak Sahni", "score": 66.8, "phone": "+91-8224462027", "connections": 2}, {"id": "+91-7155522441", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Ojas Bhavsar", "score": 36.4, "phone": "+91-3088060716", "connections": 1}, {"id": "+91-6658277894", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Sathvik Mahajan", "score": 31.2, "phone": "+91-4612031808", "connections": 1}, {"id": "+91-0083322930", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Elijah Rege", "score": 34.9, "phone": "+91-1324892076", "connections": 1}, {"id": "+91-0988006174", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-8261621115", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Simon Rai", "score": 38.8, "phone": "+91-6754235346", "connections": 1}, {"id": "+91-8535218781", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-7380064908", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Ayush Buch", "score": 35.2, "phone": "+91-8561621656", "connections": 1}, {"id": "+91-2249298044", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Amol Nagy", "score": 36.4, "phone": "+91-3128261525", "connections": 1}, {"id": "+91-1296901195", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Baljiwan Hayer", "score": 25.3, "phone": "+91-0327979516", "connections": 1}, {"id": "+91-7036067702", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Devansh Vohra", "score": 34.8, "phone": "+91-7245876065", "connections": 1}, {"id": "+91-5529660417", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Gopal Radhakrishnan", "score": 36.0, "phone": "+91-9997632226", "connections": 1}, {"id": "+91-9530679275", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Zayyan Ahluwalia", "score": 20.9, "phone": "+91-0421607034", "connections": 1}, {"id": "+91-3566383950", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Rudra Sant", "score": 18.9, "phone": "+91-7744695455", "connections": 1}, {"id": "+91-8101692629", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Fitan Mander", "score": 23.0, "phone": "+91-0283885531", "connections": 1}, {"id": "+91-5376571151", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Nachiket Desai", "score": 32.4, "phone": "+91-3029050253", "connections": 1}, {"id": "+91-5405416287", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-9937146397", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-8841380062", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-3531160657", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Tanveer Choudhary", "score": 31.1, "phone": "+91-1407733840", "connections": 1}, {"id": "+91-2769136542", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-8324791927", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Amol Mody", "score": 20.4, "phone": "+91-5730267951", "connections": 1}, {"id": "+91-8831730519", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Zaid Bhattacharyya", "score": 26.5, "phone": "+91-9402246831", "connections": 1}, {"id": "+91-4969103950", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Nicholas Karpe", "score": 22.6, "phone": "+91-8749925305", "connections": 1}, {"id": "+91-1298742862", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-6304508680", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-4754813913", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Reyansh Anne", "score": 32.9, "phone": "+91-6922080797", "connections": 1}, {"id": "+91-6216694266", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Andrew Bora", "score": 32.1, "phone": "+91-8714702226", "connections": 1}, {"id": "+91-5915263172", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Gagan Rao", "score": 38.6, "phone": "+91-5714909698", "connections": 1}, {"id": "+91-1313704144", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Peter Barad", "score": 37.7, "phone": "+91-9440790043", "connections": 1}, {"id": "+91-7799749261", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Nihal Rana", "score": 40.0, "phone": "+91-5691317104", "connections": 1}, {"id": "+91-4273670069", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Arjun Sheth", "score": 37.9, "phone": "+91-6111449019", "connections": 1}, {"id": "+91-3211806618", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-4598784260", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Laban Prakash", "score": 42.9, "phone": "+91-5372652872", "connections": 1}, {"id": "+91-1951231046", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-3684198529", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-8935396640", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Ayush Baria", "score": 30.1, "phone": "+91-6993641756", "connections": 1}, {"id": "+91-4983630267", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Dominic Gupta", "score": 20.6, "phone": "+91-9954528199", "connections": 1}, {"id": "+91-3691955937", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Naveen Tailor", "score": 33.1, "phone": "+91-1549231524", "connections": 1}, {"id": "+91-7507465885", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Frado Dhingra", "score": 27.4, "phone": "+91-0333553548", "connections": 1}, {"id": "+91-6641847435", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Kevin Ganesan", "score": 36.0, "phone": "+91-5505012573", "connections": 1}, {"id": "+91-6822881229", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Wriddhish Varty", "score": 30.9, "phone": "+91-8726663475", "connections": 1}, {"id": "+91-4171972095", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Jeet Saha", "score": 23.0, "phone": "+91-2751214628", "connections": 1}, {"id": "+91-1250436793", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Anay Minhas", "score": 23.4, "phone": "+91-4475823294", "connections": 1}, {"id": "+91-2278623406", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Jatin Murthy", "score": 25.0, "phone": "+91-0437844453", "connections": 1}, {"id": "+91-1746159750", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Reyansh Mangal", "score": 35.1, "phone": "+91-0193610079", "connections": 1}, {"id": "+91-4684812524", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Elijah Ganguly", "score": 19.4, "phone": "+91-6320194538", "connections": 1}, {"id": "+91-8667541428", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Tejas Nigam", "score": 20.3, "phone": "+91-4414875019", "connections": 1}, {"id": "+91-3450312271", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Akshay Lata", "score": 27.3, "phone": "+91-2325906102", "connections": 1}, {"id": "+91-1189756397", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Frederick Nori", "score": 30.5, "phone": "+91-0009063115", "connections": 1}, {"id": "+91-6799582777", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Brijesh Goda", "score": 20.4, "phone": "+91-6454080360", "connections": 1}, {"id": "+91-1395100063", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Qadim Solanki", "score": 26.4, "phone": "+91-6530338206", "connections": 1}, {"id": "+91-1044800820", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Daniel Raman", "score": 31.2, "phone": "+91-5203140569", "connections": 1}, {"id": "+91-1525809736", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-4702317695", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Frederick Gade", "score": 27.4, "phone": "+91-9749956561", "connections": 1}, {"id": "+91-4521265079", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Raghav Manda", "score": 20.4, "phone": "+91-9386771558", "connections": 1}, {"id": "+91-5833469312", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Laban Sidhu", "score": 25.7, "phone": "+91-1679781002", "connections": 1}, {"id": "+91-9641070073", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Vihaan Vohra", "score": 30.5, "phone": "+91-1608300776", "connections": 1}, {"id": "+91-3923216148", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. David Nayak", "score": 30.6, "phone": "+91-0908250618", "connections": 1}, {"id": "+91-3758973716", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-9156712697", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Matthew Om", "score": 19.1, "phone": "+91-2323764440", "connections": 1}, {"id": "+91-0340298591", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Rayaan Bhavsar", "score": 25.2, "phone": "+91-9135444363", "connections": 1}, {"id": "+91-1364678894", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Hemang Shere", "score": 25.4, "phone": "+91-1359460122", "connections": 1}, {"id": "+91-8163791530", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Jeet Sachdeva", "score": 34.0, "phone": "+91-4631009912", "connections": 1}, {"id": "+91-3997099578", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Zehaan Wali", "score": 29.4, "phone": "+91-8000129596", "connections": 1}, {"id": "+91-7486245083", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Aarnav Sekhon", "score": 18.4, "phone": "+91-7235641635", "connections": 1}, {"id": "+91-8418562933", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Qarin Balan", "score": 24.8, "phone": "+91-4277185805", "connections": 1}, {"id": "+91-7171626711", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Balhaar Sami", "score": 22.6, "phone": "+91-1715766898", "connections": 1}, {"id": "+91-9080085208", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Warjas Khalsa", "score": 22.9, "phone": "+91-2023838998", "connections": 1}, {"id": "+91-0524161213", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Alexander Master", "score": 24.1, "phone": "+91-9405178098", "connections": 1}, {"id": "+91-0162900589", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Yagnesh Zacharia", "score": 20.8, "phone": "+91-1681067925", "connections": 1}, {"id": "+91-8975030242", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-7740381949", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Gaurang Bhatti", "score": 22.5, "phone": "+91-7194825001", "connections": 1}, {"id": "+91-8267178405", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-4373688889", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Ansh Sandal", "score": 27.6, "phone": "+91-2507232638", "connections": 1}, {"id": "+91-0139452164", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Harsh Samra", "score": 36.6, "phone": "+91-8762291976", "connections": 1}, {"id": "+91-5482105475", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Zaid Nair", "score": 41.9, "phone": "+91-2579426125", "connections": 1}, {"id": "+91-8951032064", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Frado Raja", "score": 31.2, "phone": "+91-3504184157", "connections": 1}, {"id": "+91-6161680532", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Owen Ganesh", "score": 25.2, "phone": "+91-4501079897", "connections": 1}, {"id": "+91-2779148518", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-9204164298", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Rudra Narula", "score": 23.0, "phone": "+91-8771310836", "connections": 1}, {"id": "+91-5940579305", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Onveer Bahl", "score": 26.4, "phone": "+91-8335561055", "connections": 1}, {"id": "+91-3904615590", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-1980611562", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Wridesh Virk", "score": 32.6, "phone": "+91-2343985265", "connections": 1}, {"id": "+91-4778000151", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Wridesh Bali", "score": 28.9, "phone": "+91-2971614670", "connections": 1}, {"id": "+91-2150790686", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Manan Subramanian", "score": 26.9, "phone": "+91-8164539334", "connections": 1}, {"id": "+91-9967968993", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-2818487325", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Samar Golla", "score": 21.2, "phone": "+91-4830450019", "connections": 1}, {"id": "+91-7418523271", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Jagdish Acharya", "score": 25.3, "phone": "+91-6400189254", "connections": 1}, {"id": "+91-2050251598", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Yagnesh Tak", "score": 25.3, "phone": "+91-9377098052", "connections": 1}, {"id": "+91-8352292464", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Falan Krishna", "score": 28.8, "phone": "+91-8579159927", "connections": 1}, {"id": "+91-1540172781", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Veer Devi", "score": 35.9, "phone": "+91-5037744332", "connections": 1}, {"id": "+91-7079832489", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Umang Sabharwal", "score": 25.6, "phone": "+91-6997065590", "connections": 1}, {"id": "+91-7007685069", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Chanakya Chaudhari", "score": 21.1, "phone": "+91-7907250746", "connections": 1}, {"id": "+91-0122059359", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "+91-6939681756", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Sathvik Pant", "score": 20.4, "phone": "+91-1554078824", "connections": 1}, {"id": "+91-2481972339", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Chakradhar Batta", "score": 18.4, "phone": "+91-9000406254", "connections": 1}, {"id": "+91-7813014202", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Oliver Dasgupta", "score": 20.1, "phone": "+91-0224687988", "connections": 1}, {"id": "+91-2913723000", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Ranbir Bains", "score": 19.4, "phone": "+91-6072329900", "connections": 1}, {"id": "+91-0863104046", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Karan Mistry", "score": 36.8, "phone": "+91-3203295820", "connections": 1}, {"id": "+91-4911446112", "score": 0.0, "phone": "N/A", "connections": 1}, {"id": "Md. Dev Mani", "score": 20.8, "phone": "+91-7339277969", "connections": 1}], "links": [{"source": "Md. Ranbir Bhalla", "target": "Md. Vedant Padmanabhan", "calls": 9, "duration": 33.0, "meeting": false}, {"source": "Md. Ranbir Bhalla", "target": "Md. Pranit Arya", "calls": 9, "duration": 48.7, "meeting": false}, {"source": "Md. Ranbir Bhalla", "target": "Md. Teerth Bhargava", "calls": 5, "duration": 36.1, "meeting": true}, {"source": "Md. Ranbir Bhalla", "target": "+91-0988006174", "calls": 1, "duration": 11.0, "meeting": false}, {"source": "Md. Vedant Padmanabhan", "target": "+91-8975030242", "calls": 1, "duration": 8.6, "meeting": false}, {"source": "Md. Pranit Arya", "target": "+91-6304508680", "calls": 1, "duration": 0.8, "meeting": false}, {"source": "Md. Christopher Pillai", "target": "Md. Robert Narain", "calls": 9, "duration": 41.2, "meeting": false}, {"source": "Md. Christopher Pillai", "target": "+91-1525809736", "calls": 1, "duration": 2.7, "meeting": false}, {"source": "Md. Robert Narain", "target": "+91-8841380062", "calls": 1, "duration": 11.8, "meeting": false}, {"source": "Md. Advik Golla", "target": "Md. Darsh Sampath", "calls": 8, "duration": 83.8, "meeting": true}, {"source": "Md. Advik Golla", "target": "+91-3684198529", "calls": 1, "duration": 13.8, "meeting": false}, {"source": "Md. Darsh Sampath", "target": "+91-3904615590", "calls": 1, "duration": 0.2, "meeting": false}, {"source": "Md. Maanav Tailor", "target": "Md. Umang Mody", "calls": 8, "duration": 46.6, "meeting": false}, {"source": "Md. Maanav Tailor", "target": "+91-5405416287", "calls": 1, "duration": 1.6, "meeting": false}, {"source": "Md. Umang Mody", "target": "Md. George Ramaswamy", "calls": 6, "duration": 23.4, "meeting": false}, {"source": "Md. Umang Mody", "target": "+91-3211806618", "calls": 1, "duration": 10.9, "meeting": false}, {"source": "Md. Harish Bali", "target": "Md. Harrison Sarna", "calls": 8, "duration": 52.0, "meeting": false}, {"source": "Md. Harish Bali", "target": "+91-3758973716", "calls": 1, "duration": 8.0, "meeting": false}, {"source": "Md. Harrison Sarna", "target": "+91-8267178405", "calls": 1, "duration": 0.4, "meeting": false}, {"source": "Md. Azad Mannan", "target": "Md. Indrajit Kunda", "calls": 7, "duration": 11.6, "meeting": true}, {"source": "Md. Azad Mannan", "target": "+91-2769136542", "calls": 1, "duration": 3.7, "meeting": false}, {"source": "Md. Indrajit Kunda", "target": "+91-1298742862", "calls": 1, "duration": 10.8, "meeting": false}, {"source": "Md. George Ramaswamy", "target": "+91-2779148518", "calls": 1, "duration": 13.2, "meeting": false}, {"source": "Md. Teerth Bhargava", "target": "Md. Samar Nagar", "calls": 5, "duration": 6.4, "meeting": true}, {"source": "Md. Teerth Bhargava", "target": "Md. Zashil Mistry", "calls": 4, "duration": 6.7, "meeting": true}, {"source": "Md. Teerth Bhargava", "target": "+91-9967968993", "calls": 1, "duration": 7.2, "meeting": false}, {"source": "Md. Samar Nagar", "target": "+91-0122059359", "calls": 1, "duration": 12.3, "meeting": false}, {"source": "Md. Zashil Mistry", "target": "+91-1951231046", "calls": 1, "duration": 7.5, "meeting": false}, {"source": "Md. Balendra Nayak", "target": "Md. Tarak Sahni", "calls": 4, "duration": 7.9, "meeting": true}, {"source": "Md. Balendra Nayak", "target": "+91-9937146397", "calls": 1, "duration": 12.4, "meeting": false}, {"source": "Md. Tarak Sahni", "target": "+91-8535218781", "calls": 1, "duration": 2.5, "meeting": false}, {"source": "+91-7155522441", "target": "Md. Ojas Bhavsar", "calls": 1, "duration": 8.9, "meeting": false}, {"source": "+91-6658277894", "target": "Md. Sathvik Mahajan", "calls": 1, "duration": 11.7, "meeting": false}, {"source": "+91-0083322930", "target": "Md. Elijah Rege", "calls": 1, "duration": 13.7, "meeting": false}, {"source": "+91-8261621115", "target": "Md. Simon Rai", "calls": 1, "duration": 13.0, "meeting": false}, {"source": "+91-7380064908", "target": "Md. Ayush Buch", "calls": 1, "duration": 1.5, "meeting": false}, {"source": "+91-2249298044", "target": "Md. Amol Nagy", "calls": 1, "duration": 9.2, "meeting": false}, {"source": "+91-1296901195", "target": "Md. Baljiwan Hayer", "calls": 1, "duration": 13.1, "meeting": false}, {"source": "+91-7036067702", "target": "Md. Devansh Vohra", "calls": 1, "duration": 7.8, "meeting": false}, {"source": "+91-5529660417", "target": "Md. Gopal Radhakrishnan", "calls": 1, "duration": 0.3, "meeting": false}, {"source": "+91-9530679275", "target": "Md. Zayyan Ahluwalia", "calls": 1, "duration": 9.3, "meeting": false}, {"source": "+91-3566383950", "target": "Md. Rudra Sant", "calls": 1, "duration": 9.2, "meeting": false}, {"source": "+91-8101692629", "target": "Md. Fitan Mander", "calls": 1, "duration": 9.7, "meeting": false}, {"source": "+91-5376571151", "target": "Md. Nachiket Desai", "calls": 1, "duration": 3.5, "meeting": false}, {"source": "+91-3531160657", "target": "Md. Tanveer Choudhary", "calls": 1, "duration": 11.3, "meeting": false}, {"source": "+91-8324791927", "target": "Md. Amol Mody", "calls": 1, "duration": 3.7, "meeting": false}, {"source": "+91-8831730519", "target": "Md. Zaid Bhattacharyya", "calls": 1, "duration": 5.0, "meeting": false}, {"source": "+91-4969103950", "target": "Md. Nicholas Karpe", "calls": 1, "duration": 5.5, "meeting": false}, {"source": "+91-4754813913", "target": "Md. Reyansh Anne", "calls": 1, "duration": 13.7, "meeting": false}, {"source": "+91-6216694266", "target": "Md. Andrew Bora", "calls": 1, "duration": 6.2, "meeting": false}, {"source": "+91-5915263172", "target": "Md. Gagan Rao", "calls": 1, "duration": 5.5, "meeting": false}, {"source": "+91-1313704144", "target": "Md. Peter Barad", "calls": 1, "duration": 12.4, "meeting": false}, {"source": "+91-7799749261", "target": "Md. Nihal Rana", "calls": 1, "duration": 5.4, "meeting": false}, {"source": "+91-4273670069", "target": "Md. Arjun Sheth", "calls": 1, "duration": 4.4, "meeting": false}, {"source": "+91-4598784260", "target": "Md. Laban Prakash", "calls": 1, "duration": 14.0, "meeting": false}, {"source": "+91-8935396640", "target": "Md. Ayush Baria", "calls": 1, "duration": 11.1, "meeting": false}, {"source": "+91-4983630267", "target": "Md. Dominic Gupta", "calls": 1, "duration": 6.1, "meeting": false}, {"source": "+91-3691955937", "target": "Md. Naveen Tailor", "calls": 1, "duration": 11.0, "meeting": false}, {"source": "+91-7507465885", "target": "Md. Frado Dhingra", "calls": 1, "duration": 14.3, "meeting": false}, {"source": "+91-6641847435", "target": "Md. Kevin Ganesan", "calls": 1, "duration": 10.5, "meeting": false}, {"source": "+91-6822881229", "target": "Md. Wriddhish Varty", "calls": 1, "duration": 8.9, "meeting": false}, {"source": "+91-4171972095", "target": "Md. Jeet Saha", "calls": 1, "duration": 9.7, "meeting": false}, {"source": "+91-1250436793", "target": "Md. Anay Minhas", "calls": 1, "duration": 14.2, "meeting": false}, {"source": "+91-2278623406", "target": "Md. Jatin Murthy", "calls": 1, "duration": 9.7, "meeting": false}, {"source": "+91-1746159750", "target": "Md. Reyansh Mangal", "calls": 1, "duration": 10.6, "meeting": false}, {"source": "+91-4684812524", "target": "Md. Elijah Ganguly", "calls": 1, "duration": 13.7, "meeting": false}, {"source": "+91-8667541428", "target": "Md. Tejas Nigam", "calls": 1, "duration": 3.1, "meeting": false}, {"source": "+91-3450312271", "target": "Md. Akshay Lata", "calls": 1, "duration": 12.6, "meeting": false}, {"source": "+91-1189756397", "target": "Md. Frederick Nori", "calls": 1, "duration": 5.4, "meeting": false}, {"source": "+91-6799582777", "target": "Md. Brijesh Goda", "calls": 1, "duration": 3.9, "meeting": false}, {"source": "+91-1395100063", "target": "Md. Qadim Solanki", "calls": 1, "duration": 4.2, "meeting": false}, {"source": "+91-1044800820", "target": "Md. Daniel Raman", "calls": 1, "duration": 12.1, "meeting": false}, {"source": "+91-4702317695", "target": "Md. Frederick Gade", "calls": 1, "duration": 14.3, "meeting": false}, {"source": "+91-4521265079", "target": "Md. Raghav Manda", "calls": 1, "duration": 3.5, "meeting": false}, {"source": "+91-5833469312", "target": "Md. Laban Sidhu", "calls": 1, "duration": 6.6, "meeting": false}, {"source": "+91-9641070073", "target": "Md. Vihaan Vohra", "calls": 1, "duration": 14.7, "meeting": false}, {"source": "+91-3923216148", "target": "Md. David Nayak", "calls": 1, "duration": 6.4, "meeting": false}, {"source": "+91-9156712697", "target": "Md. Matthew Om", "calls": 1, "duration": 11.3, "meeting": false}, {"source": "+91-0340298591", "target": "Md. Rayaan Bhavsar", "calls": 1, "duration": 11.8, "meeting": false}, {"source": "+91-1364678894", "target": "Md. Hemang Shere", "calls": 1, "duration": 13.9, "meeting": false}, {"source": "+91-8163791530", "target": "Md. Jeet Sachdeva", "calls": 1, "duration": 0.3, "meeting": false}, {"source": "+91-3997099578", "target": "Md. Zehaan Wali", "calls": 1, "duration": 3.9, "meeting": false}, {"source": "+91-7486245083", "target": "Md. Aarnav Sekhon", "calls": 1, "duration": 3.8, "meeting": false}, {"source": "+91-8418562933", "target": "Md. Qarin Balan", "calls": 1, "duration": 7.7, "meeting": false}, {"source": "+91-7171626711", "target": "Md. Balhaar Sami", "calls": 1, "duration": 5.7, "meeting": false}, {"source": "+91-9080085208", "target": "Md. Warjas Khalsa", "calls": 1, "duration": 9.2, "meeting": false}, {"source": "+91-0524161213", "target": "Md. Alexander Master", "calls": 1, "duration": 1.4, "meeting": false}, {"source": "+91-0162900589", "target": "Md. Yagnesh Zacharia", "calls": 1, "duration": 8.3, "meeting": false}, {"source": "+91-7740381949", "target": "Md. Gaurang Bhatti", "calls": 1, "duration": 4.8, "meeting": false}, {"source": "+91-4373688889", "target": "Md. Ansh Sandal", "calls": 1, "duration": 5.7, "meeting": false}, {"source": "+91-0139452164", "target": "Md. Harsh Samra", "calls": 1, "duration": 6.4, "meeting": false}, {"source": "+91-5482105475", "target": "Md. Zaid Nair", "calls": 1, "duration": 9.2, "meeting": false}, {"source": "+91-8951032064", "target": "Md. Frado Raja", "calls": 1, "duration": 12.3, "meeting": false}, {"source": "+91-6161680532", "target": "Md. Owen Ganesh", "calls": 1, "duration": 12.0, "meeting": false}, {"source": "+91-9204164298", "target": "Md. Rudra Narula", "calls": 1, "duration": 9.8, "meeting": false}, {"source": "+91-5940579305", "target": "Md. Onveer Bahl", "calls": 1, "duration": 4.4, "meeting": false}, {"source": "+91-1980611562", "target": "Md. Wridesh Virk", "calls": 1, "duration": 6.0, "meeting": false}, {"source": "+91-4778000151", "target": "Md. Wridesh Bali", "calls": 1, "duration": 9.1, "meeting": false}, {"source": "+91-2150790686", "target": "Md. Manan Subramanian", "calls": 1, "duration": 8.6, "meeting": false}, {"source": "+91-2818487325", "target": "Md. Samar Golla", "calls": 1, "duration": 12.0, "meeting": false}, {"source": "+91-7418523271", "target": "Md. Jagdish Acharya", "calls": 1, "duration": 12.8, "meeting": false}, {"source": "+91-2050251598", "target": "Md. Yagnesh Tak", "calls": 1, "duration": 12.8, "meeting": false}, {"source": "+91-8352292464", "target": "Md. Falan Krishna", "calls": 1, "duration": 8.3, "meeting": false}, {"source": "+91-1540172781", "target": "Md. Veer Devi", "calls": 1, "duration": 9.2, "meeting": false}, {"source": "+91-7079832489", "target": "Md. Umang Sabharwal", "calls": 1, "duration": 6.2, "meeting": false}, {"source": "+91-7007685069", "target": "Md. Chanakya Chaudhari", "calls": 1, "duration": 10.8, "meeting": false}, {"source": "+91-6939681756", "target": "Md. Sathvik Pant", "calls": 1, "duration": 4.4, "meeting": false}, {"source": "+91-2481972339", "target": "Md. Chakradhar Batta", "calls": 1, "duration": 4.0, "meeting": false}, {"source": "+91-7813014202", "target": "Md. Oliver Dasgupta", "calls": 1, "duration": 0.8, "meeting": false}, {"source": "+91-2913723000", "target": "Md. Ranbir Bains", "calls": 1, "duration": 14.4, "meeting": false}, {"source": "+91-0863104046", "target": "Md. Karan Mistry", "calls": 1, "duration": 7.9, "meeting": false}, {"source": "+91-4911446112", "target": "Md. Dev Mani", "calls": 1, "duration": 7.9, "meeting": false}]};
+
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const svg = d3.select("#graph");
+
+        const simulation = d3.forceSimulation(data.nodes)
+            .force("link", d3.forceLink(data.links).id(d => d.id).distance(100))
+            .force("charge", d3.forceManyBody().strength(-300))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const colorScale = d3.scaleSequential()
+            .domain([0, 100])
+            .interpolator(d3.interpolateRgb("#10b981", "#ef4444"));
+
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(data.links)
+            .enter().append("line")
+            .attr("class", d => d.meeting ? "link meeting" : "link normal")
+            .attr("stroke-width", d => Math.max(1.5, d.calls * 0.8));
+
+        const node = svg.append("g")
+            .selectAll("circle")
+            .data(data.nodes)
+            .enter().append("circle")
+            .attr("class", "node")
+            .attr("r", d => 6 + Math.sqrt(d.connections) * 3)
+            .attr("fill", d => colorScale(d.score))
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        const label = svg.append("g")
+            .selectAll("text")
+            .data(data.nodes)
+            .enter().append("text")
+            .text(d => d.id)
+            .attr("dx", 12)
+            .attr("dy", 4);
+
+        node.on("click", (event, d) => {
+            d3.select("#details").style("display", "block");
+            d3.select("#det-name").text(d.id);
+            d3.select("#det-phone").text(d.phone);
+            d3.select("#det-score").text(d.score);
+            d3.select("#det-conn").text(d.connections);
+        });
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+
+            label
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
+        });
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+    </script>
+</body>
+</html>

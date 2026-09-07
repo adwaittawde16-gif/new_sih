@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Surveillance Heatmap — Mumbai Intelligence</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://leaflet.github.io/Leaflet.heat/dist/leaflet-heat.js"></script>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:'Segoe UI',Arial,sans-serif; background:#0d1117; color:#e6edf3; display:flex; flex-direction:column; height:100vh; }
+  #header { background:#161b22; border-bottom:2px solid #f85149; padding:12px 20px; display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+  #header h1 { color:#f85149; font-size:1.1rem; }
+  .stat-pill { background:#21262d; border:1px solid #30363d; border-radius:20px; padding:4px 14px; font-size:0.8rem; }
+  .stat-pill strong { color:#58a6ff; }
+  #main { display:flex; flex:1; overflow:hidden; }
+  #map { flex:1; }
+  #sidebar {
+    width:420px; background:#161b22; border-left:1px solid #30363d;
+    overflow-y:auto; padding:16px;
+  }
+  #sidebar h2 { color:#58a6ff; font-size:0.95rem; margin-bottom:12px; }
+  table { width:100%; border-collapse:collapse; font-size:0.75rem; }
+  th { background:#21262d; color:#8b949e; padding:6px 8px; text-align:left; position:sticky; top:0; }
+  td { padding:5px 8px; border-bottom:1px solid #21262d; color:#c9d1d9; vertical-align:top; }
+  tr:hover td { background:#1c2128; }
+  td:nth-child(3) { color:#f0883e; text-align:center; }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>&#x1F525; Surveillance Heatmap — Brihanmumbai Police</h1>
+  <div class="stat-pill">Observations: <strong>115</strong></div>
+  <div class="stat-pill">Locations: <strong>6</strong></div>
+  <div class="stat-pill">Geocoded: <strong>6</strong></div>
+  <div class="stat-pill">Generated: <strong>2026-09-07 23:04</strong></div>
+</div>
+<div id="main">
+  <div id="map"></div>
+  <div id="sidebar">
+    <h2>&#x1F4CA; Top 20 Surveilled Locations</h2>
+    <table>
+      <tr><th>#</th><th>Location</th><th>Obs.</th><th>Suspects</th><th>Top Suspects</th></tr>
+      <tr>
+              <td>1</td>
+              <td>Venus Wine Shop, N.M. Joshi Marg, Byculla (W)</td>
+              <td><strong>33</strong></td>
+              <td>32</td>
+              <td style="font-size:0.75rem">Md. Advik Golla, Md. Amol Nagy, Md. Anay Minhas +29</td>
+            </tr><tr>
+              <td>2</td>
+              <td>Station Road Footpath, Agripada, Mumbai</td>
+              <td><strong>27</strong></td>
+              <td>28</td>
+              <td style="font-size:0.75rem">Md. Amol Mody, Md. Brijesh Goda, Md. Chakradhar Batta +25</td>
+            </tr><tr>
+              <td>3</td>
+              <td>Bhadakamkar Marg, Lamington Road, Grant Road</td>
+              <td><strong>17</strong></td>
+              <td>19</td>
+              <td style="font-size:0.75rem">Md. Advik Golla, Md. Akshay Lata, Md. Ansh Sandal +16</td>
+            </tr><tr>
+              <td>4</td>
+              <td>Senapati Bapat Marg, Lower Parel, Mumbai</td>
+              <td><strong>17</strong></td>
+              <td>17</td>
+              <td style="font-size:0.75rem">Md. Aarnav Sekhon, Md. Ayush Buch, Md. Chanakya Chaudhari +14</td>
+            </tr><tr>
+              <td>5</td>
+              <td>Madanpura, Baban Galli, Byculla (W)</td>
+              <td><strong>12</strong></td>
+              <td>13</td>
+              <td style="font-size:0.75rem">Md. Alexander Master, Md. Balendra Nayak, Md. Darsh Sampath +10</td>
+            </tr><tr>
+              <td>6</td>
+              <td>MIDC Road, Gavdevi, Thakurli (East), Thane</td>
+              <td><strong>9</strong></td>
+              <td>9</td>
+              <td style="font-size:0.75rem">Md. Azad Mannan, Md. Harish Bali, Md. Kevin Ganesan +6</td>
+            </tr>
+    </table>
+  </div>
+</div>
+<script>
+const map = L.map('map').setView([19.0760, 72.8777], 13);
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+  attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
+  maxZoom: 19
+}).addTo(map);
+
+const points = [[18.97099705526982, 72.82478821524502, 27], [18.98067153663732, 72.83705539946915, 33], [18.963594761664115, 72.82171526883579, 17], [18.996063017716104, 72.83589180730596, 17], [18.98013653836611, 72.83686682213634, 12], [19.218421552969808, 72.97871935813889, 9]];
+if (points.length > 0) {
+  L.heatLayer(points, {
+    radius: 35,
+    blur: 25,
+    maxZoom: 18,
+    max: Math.max(...points.map(p => p[2])),
+    gradient: {0.2:'#1a237e', 0.4:'#0d47a1', 0.6:'#f9a825', 0.8:'#e65100', 1.0:'#b71c1c'}
+  }).addTo(map);
+}
+
+const topLocs = [{"lat": 18.9804, "lon": 72.8368, "loc": "Venus Wine Shop, N.M. Joshi Marg, Byculla (W)", "cnt": 33, "suspects": 32}, {"lat": 18.9717, "lon": 72.8239, "loc": "Station Road Footpath, Agripada, Mumbai", "cnt": 27, "suspects": 28}, {"lat": 18.9637, "lon": 72.8221, "loc": "Bhadakamkar Marg, Lamington Road, Grant Road", "cnt": 17, "suspects": 19}, {"lat": 18.9958, "lon": 72.8363, "loc": "Senapati Bapat Marg, Lower Parel, Mumbai", "cnt": 17, "suspects": 17}, {"lat": 18.9804, "lon": 72.8368, "loc": "Madanpura, Baban Galli, Byculla (W)", "cnt": 12, "suspects": 13}, {"lat": 19.2183, "lon": 72.9781, "loc": "MIDC Road, Gavdevi, Thakurli (East), Thane", "cnt": 9, "suspects": 9}];
+
+topLocs.forEach(l => {
+  L.circleMarker([l.lat, l.lon], {
+    radius: 6 + Math.min(l.cnt * 1.5, 18),
+    fillColor: '#f85149', color: '#fff', weight: 1.5,
+    fillOpacity: 0.85
+  }).addTo(map)
+   .bindPopup(`<strong>${l.loc}</strong><br>Observations: ${l.cnt}<br>Suspects: ${l.suspects}`);
+});
+</script>
+</body>
+</html>

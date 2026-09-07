@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Timeline - Md. Ranbir Bhalla</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #0f172a; color: #f8fafc; margin: 0; padding: 20px; }
+        .header { background: #1e293b; padding: 20px; border-radius: 12px; border: 1px solid #334155; margin-bottom: 30px; }
+        h1 { margin: 0 0 5px 0; color: #38bdf8; }
+        .timeline { position: relative; max-width: 900px; margin: 0 auto; }
+        .timeline::after { content: ''; position: absolute; width: 4px; background-color: #334155; top: 0; bottom: 0; left: 50%; margin-left: -2px; }
+        .container { padding: 10px 40px; position: relative; background-color: inherit; width: 45%; }
+        .left { left: 0; }
+        .right { left: 50%; }
+        .container::after { content: ''; position: absolute; width: 16px; height: 16px; right: -8px; background-color: #38bdf8; border: 3px solid #0f172a; top: 15px; border-radius: 50%; z-index: 1; }
+        .right::after { left: -8px; }
+        .content { padding: 15px 20px; background-color: #1e293b; position: relative; border-radius: 10px; border: 1px solid #334155; }
+        .badge { display: inline-block; padding: 3px 8px; font-size: 11px; font-weight: bold; border-radius: 4px; color: #fff; margin-bottom: 8px; }
+        .timestamp { font-size: 12px; color: #94a3b8; font-weight: bold; margin-bottom: 4px; }
+        .title { font-size: 15px; font-weight: bold; margin-bottom: 6px; }
+        .desc { font-size: 13px; color: #cbd5e1; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🕵️ FORENSIC TIMELINE: MD. RANBIR BHALLA</h1>
+        <p>Total Events Tracked: 30 | Phone: +91-2236381844</p>
+    </div>
+
+    <div class="timeline" id="timeline-body"></div>
+
+    <script>
+        const events = [{"timestamp": "2026-07-31 09:30:43", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with +91-0988006174", "description": "Type: Outgoing | Duration: 661s | Tower: Station Road Footpath, Agripada, Mumbai"}, {"timestamp": "2026-07-31 10:59:43", "category": "Financial Transaction", "color": "#10b981", "title": "Payment: INR 734.0 (FAILED)", "description": "Mode: UPI / QR Merchant | Payee: Peer Transfer"}, {"timestamp": "2026-07-31 15:53:43", "category": "FIR Filed", "color": "#ef4444", "title": "FIR #0254/2026 Registered", "description": "Police Station: Byculla Police Station | Section: Maharashtra Prohibition Act, 1949 - Sec 85(1) | IO: Samesh Bedi"}, {"timestamp": "2026-08-02 19:35:27", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Teerth Bhargava", "description": "Type: Incoming | Duration: 871s | Tower: Station Road Footpath, Agripada, Mumbai"}, {"timestamp": "2026-08-03 17:30:00", "category": "Financial Transaction", "color": "#10b981", "title": "Payment: INR 8176.11 (PENDING)", "description": "Mode: ATM Withdrawal | Payee: Wine Shop Vendor"}, {"timestamp": "2026-08-04 02:44:23", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: SMS | Duration: 0s | Tower: Madanpura, Baban Galli, Byculla (W)"}, {"timestamp": "2026-08-04 03:27:28", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Outgoing | Duration: 148s | Tower: Madanpura, Baban Galli, Byculla (W)"}, {"timestamp": "2026-08-05 11:36:52", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: SMS | Duration: 0s | Tower: Senapati Bapat Marg, Lower Parel, Mumbai"}, {"timestamp": "2026-08-07 23:57:20", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: SMS | Duration: 0s | Tower: Station Road Footpath, Agripada, Mumbai"}, {"timestamp": "2026-08-09 02:48:50", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Teerth Bhargava", "description": "Type: SMS | Duration: 0s | Tower: Venus Wine Shop, N.M. Joshi Marg, Byculla (W)"}, {"timestamp": "2026-08-10 22:30:35", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: SMS | Duration: 0s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-11 11:53:50", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Incoming | Duration: 764s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-11 15:30:00", "category": "Financial Transaction", "color": "#10b981", "title": "Payment: INR 7262.36 (FAILED)", "description": "Mode: ATM Withdrawal | Payee: Liquor Store"}, {"timestamp": "2026-08-11 19:52:17", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: SMS | Duration: 0s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-12 02:25:33", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Outgoing | Duration: 165s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-13 03:52:51", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Incoming | Duration: 301s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-16 18:15:00", "category": "CCTV Sighting", "color": "#f59e0b", "title": "CCTV Camera MH-CCTV-9890 Sighting", "description": "Location: Public Footpath Corner, Lower Parel, Mumbai | Match Confidence: 84.0% | Status: Verified Match"}, {"timestamp": "2026-08-19 19:26:23", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: SMS | Duration: 0s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-19 19:39:38", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: Outgoing | Duration: 834s | Tower: Senapati Bapat Marg, Lower Parel, Mumbai"}, {"timestamp": "2026-08-22 19:15:58", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: Outgoing | Duration: 557s | Tower: Venus Wine Shop, N.M. Joshi Marg, Byculla (W)"}, {"timestamp": "2026-08-23 11:53:30", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Teerth Bhargava", "description": "Type: Outgoing | Duration: 685s | Tower: Station Road Footpath, Agripada, Mumbai"}, {"timestamp": "2026-08-23 19:23:51", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Teerth Bhargava", "description": "Type: Incoming | Duration: 610s | Tower: Senapati Bapat Marg, Lower Parel, Mumbai"}, {"timestamp": "2026-08-24 03:49:46", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: SMS | Duration: 0s | Tower: Bhadakamkar Marg, Lamington Road, Grant Road"}, {"timestamp": "2026-08-24 11:20:39", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Teerth Bhargava", "description": "Type: SMS | Duration: 0s | Tower: Senapati Bapat Marg, Lower Parel, Mumbai"}, {"timestamp": "2026-08-24 11:33:37", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: SMS | Duration: 0s | Tower: Station Road Footpath, Agripada, Mumbai"}, {"timestamp": "2026-08-25 02:10:39", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Outgoing | Duration: 353s | Tower: Madanpura, Baban Galli, Byculla (W)"}, {"timestamp": "2026-08-25 18:15:00", "category": "CCTV Sighting", "color": "#f59e0b", "title": "CCTV Camera MH-CCTV-9173 Sighting", "description": "Location: Metro Access Road, Byculla West, Mumbai | Match Confidence: 85.0% | Status: Verified Match"}, {"timestamp": "2026-08-27 01:29:28", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Vedant Padmanabhan", "description": "Type: Outgoing | Duration: 591s | Tower: Venus Wine Shop, N.M. Joshi Marg, Byculla (W)"}, {"timestamp": "2026-08-27 14:49:51", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Incoming | Duration: 478s | Tower: Madanpura, Baban Galli, Byculla (W)"}, {"timestamp": "2026-08-27 14:52:16", "category": "CDR Call Log", "color": "#38bdf8", "title": "Call/SMS with Md. Pranit Arya", "description": "Type: Incoming | Duration: 713s | Tower: Venus Wine Shop, N.M. Joshi Marg, Byculla (W)"}];
+        const body = document.getElementById("timeline-body");
+
+        events.forEach((ev, idx) => {
+            const container = document.createElement("div");
+            container.className = "container " + (idx % 2 === 0 ? "left" : "right");
+
+            container.innerHTML = `
+                <div class="content">
+                    <span class="badge" style="background-color: ${ev.color}">${ev.category}</span>
+                    <div class="timestamp">⏰ ${ev.timestamp}</div>
+                    <div class="title">${ev.title}</div>
+                    <div class="desc">${ev.description}</div>
+                </div>
+            `;
+            body.appendChild(container);
+        });
+    </script>
+</body>
+</html>

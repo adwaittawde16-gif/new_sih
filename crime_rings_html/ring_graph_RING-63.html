@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crime Ring Topology - RING-63</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; padding: 0; background-color: #0f172a; color: #f8fafc; overflow: hidden; }
+        #header { position: absolute; top: 15px; left: 20px; z-index: 10; background: rgba(15, 23, 42, 0.9); padding: 15px 25px; border-radius: 12px; border: 1px solid #334155; backdrop-filter: blur(8px); }
+        h1 { margin: 0 0 5px 0; font-size: 22px; color: #f43f5e; }
+        p { margin: 0; font-size: 13px; color: #94a3b8; }
+        svg { width: 100vw; height: 100vh; }
+        .node { cursor: pointer; stroke: #fff; stroke-width: 1.5px; }
+        .node.leader { stroke: #f43f5e; stroke-width: 4px; }
+        .link { stroke-opacity: 0.8; }
+        .link.meeting { stroke: #ef4444; stroke-width: 3.5px; stroke-dasharray: 4; }
+        .link.normal { stroke: #38bdf8; stroke-width: 1.5px; }
+        text { font-size: 11px; fill: #f8fafc; font-weight: bold; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <h1>🚨 CRIME RING NETWORK: RING-63</h1>
+        <p><strong>Ring Leader:</strong> Md. Alexander Master (Threat Score: 24.1/100)</p>
+        <p><strong>Members:</strong> 2 | <strong>Internal Calls:</strong> 1 | <strong>CCTV Meetings:</strong> 0</p>
+    </div>
+
+    <svg id="graph"></svg>
+
+    <script>
+        const data = {"nodes": [{"id": "Md. Alexander Master", "score": 24.1, "phone": "+91-9405178098", "is_leader": true, "connections": 1}, {"id": "+91-0524161213", "score": 0.0, "phone": "N/A", "is_leader": false, "connections": 1}], "links": [{"source": "Md. Alexander Master", "target": "+91-0524161213", "calls": 1, "duration": 1.4, "meeting": false}]};
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+
+        const svg = d3.select("#graph");
+
+        const simulation = d3.forceSimulation(data.nodes)
+            .force("link", d3.forceLink(data.links).id(d => d.id).distance(120))
+            .force("charge", d3.forceManyBody().strength(-400))
+            .force("center", d3.forceCenter(width / 2, height / 2));
+
+        const link = svg.append("g")
+            .selectAll("line")
+            .data(data.links)
+            .enter().append("line")
+            .attr("class", d => d.meeting ? "link meeting" : "link normal");
+
+        const node = svg.append("g")
+            .selectAll("circle")
+            .data(data.nodes)
+            .enter().append("circle")
+            .attr("class", d => d.is_leader ? "node leader" : "node")
+            .attr("r", d => d.is_leader ? 14 : 9)
+            .attr("fill", d => d.is_leader ? "#f43f5e" : "#38bdf8")
+            .call(d3.drag()
+                .on("start", dragstarted)
+                .on("drag", dragged)
+                .on("end", dragended));
+
+        const label = svg.append("g")
+            .selectAll("text")
+            .data(data.nodes)
+            .enter().append("text")
+            .text(d => (d.is_leader ? "👑 " : "") + d.id)
+            .attr("dx", 15)
+            .attr("dy", 4);
+
+        simulation.on("tick", () => {
+            link
+                .attr("x1", d => d.source.x)
+                .attr("y1", d => d.source.y)
+                .attr("x2", d => d.target.x)
+                .attr("y2", d => d.target.y);
+
+            node
+                .attr("cx", d => d.x)
+                .attr("cy", d => d.y);
+
+            label
+                .attr("x", d => d.x)
+                .attr("y", d => d.y);
+        });
+
+        function dragstarted(event, d) {
+            if (!event.active) simulation.alphaTarget(0.3).restart();
+            d.fx = d.x;
+            d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+            d.fx = event.x;
+            d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+            if (!event.active) simulation.alphaTarget(0);
+            d.fx = null;
+            d.fy = null;
+        }
+    </script>
+</body>
+</html>

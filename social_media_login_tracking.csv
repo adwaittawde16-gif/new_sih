@@ -1,0 +1,205 @@
+tracking_id,fir_number,suspect_name,associated_phone,platform,event_type,timestamp,approximate_location,device_type,network_type,location_accuracy_meters
+SMT-0001-01,0628/2026,Md. Hardik Kant,+91-8482336846,WhatsApp,Logout,2026-08-12 22:33:32,"Dadar, Mumbai",Desktop Browser,Broadband,442
+SMT-0001-02,0628/2026,Md. Hardik Kant,+91-8482336846,WhatsApp,Logout,2026-08-10 00:04:32,"Agripada, Mumbai",Android Mobile,Wi-Fi,127
+SMT-0001-03,0628/2026,Md. Hardik Kant,+91-8482336846,WhatsApp,Login,2026-08-09 23:16:32,"Lower Parel, Mumbai",Android Mobile,Broadband,235
+SMT-0002-01,0433/2026,Md. Gabriel Warrior,+91-1085530548,Instagram,Login,2026-09-07 08:57:50,"Agripada, Mumbai",iPhone,Broadband,301
+SMT-0002-02,0433/2026,Md. Gabriel Warrior,+91-1085530548,WhatsApp,Session Activity,2026-09-07 08:14:50,"Worli, Mumbai",Desktop Browser,Mobile Data,200
+SMT-0003-01,0389/2026,Md. Gabriel Raj,+91-3890666522,WhatsApp,Logout,2026-07-10 15:22:07,"Nagpada, Mumbai",Android Mobile,Broadband,474
+SMT-0003-02,0389/2026,Md. Gabriel Raj,+91-3890666522,WhatsApp,Login,2026-07-11 17:12:07,"Kalachowki, Mumbai",Desktop Browser,Broadband,224
+SMT-0004-01,0772/2026,Md. Matthew Nayar,+91-2792851047,Facebook,Logout,2026-08-16 21:17:59,"Lower Parel, Mumbai",iPhone,Broadband,142
+SMT-0005-01,0675/2026,Md. Mohammed Badami,+91-6435977332,X / Twitter,Logout,2026-09-03 04:55:48,"Lower Parel, Mumbai",Android Mobile,Mobile Data,355
+SMT-0006-01,0664/2026,Md. Ranbir Tella,+91-6119917426,X / Twitter,Logout,2026-07-20 06:36:51,"Lower Parel, Mumbai",Android Mobile,Mobile Data,390
+SMT-0006-02,0664/2026,Md. Ranbir Tella,+91-6119917426,WhatsApp,Session Activity,2026-07-21 00:53:51,"Nagpada, Mumbai",Android Mobile,Mobile Data,428
+SMT-0007-01,0299/2026,Md. Darsh Jaggi,+91-5140451817,Instagram,Session Activity,2026-08-22 20:51:43,"Agripada, Mumbai",Android Mobile,Wi-Fi,346
+SMT-0007-02,0299/2026,Md. Darsh Jaggi,+91-5140451817,WhatsApp,Logout,2026-08-25 14:06:43,"Lower Parel, Mumbai",Android Mobile,Wi-Fi,469
+SMT-0007-03,0299/2026,Md. Darsh Jaggi,+91-5140451817,Facebook,Session Activity,2026-08-26 00:11:43,"Agripada, Mumbai",Desktop Browser,Mobile Data,381
+SMT-0008-01,0277/2026,Md. Thomas Batta,+91-1404536558,Facebook,Session Activity,2026-08-17 02:39:39,"Worli, Mumbai",Android Mobile,Wi-Fi,64
+SMT-0008-02,0277/2026,Md. Thomas Batta,+91-1404536558,X / Twitter,Session Activity,2026-08-18 04:04:39,"Nagpada, Mumbai",Android Mobile,Broadband,394
+SMT-0008-03,0277/2026,Md. Thomas Batta,+91-1404536558,Facebook,Session Activity,2026-08-14 18:57:39,"Kalachowki, Mumbai",Android Mobile,Wi-Fi,114
+SMT-0009-01,0711/2026,Md. Azad Apte,+91-0040309867,X / Twitter,Session Activity,2026-08-30 22:53:29,"Nagpada, Mumbai",iPhone,Broadband,384
+SMT-0009-02,0711/2026,Md. Azad Apte,+91-0040309867,WhatsApp,Session Activity,2026-08-28 20:32:29,"Nagpada, Mumbai",iPhone,Mobile Data,196
+SMT-0010-01,0585/2026,Md. Brijesh Bahri,+91-4753915012,Instagram,Session Activity,2026-09-02 14:04:45,"Kalachowki, Mumbai",Desktop Browser,Mobile Data,447
+SMT-0010-02,0585/2026,Md. Brijesh Bahri,+91-4753915012,X / Twitter,Session Activity,2026-08-31 21:49:45,"Byculla West, Mumbai",Desktop Browser,Mobile Data,270
+SMT-0010-03,0585/2026,Md. Brijesh Bahri,+91-4753915012,X / Twitter,Login,2026-08-29 19:06:45,"Grant Road, Mumbai",iPhone,Wi-Fi,158
+SMT-0011-01,0743/2026,Md. Gavin Chada,+91-5095132008,WhatsApp,Session Activity,2026-08-26 11:55:05,"Grant Road, Mumbai",Desktop Browser,Broadband,127
+SMT-0011-02,0743/2026,Md. Gavin Chada,+91-5095132008,Instagram,Login,2026-08-24 07:32:05,"Grant Road, Mumbai",Desktop Browser,Broadband,143
+SMT-0011-03,0743/2026,Md. Gavin Chada,+91-5095132008,WhatsApp,Session Activity,2026-08-23 19:58:05,"Byculla West, Mumbai",Android Mobile,Broadband,404
+SMT-0012-01,0844/2026,Md. Yagnesh Srinivasan,+91-5070161686,WhatsApp,Login,2026-07-27 09:31:58,"Worli, Mumbai",iPhone,Mobile Data,314
+SMT-0012-02,0844/2026,Md. Yagnesh Srinivasan,+91-5070161686,X / Twitter,Login,2026-07-27 23:31:58,"Byculla West, Mumbai",iPhone,Broadband,357
+SMT-0013-01,0496/2026,Md. Harsh Balan,+91-3791380192,Facebook,Logout,2026-09-07 06:07:11,"Lower Parel, Mumbai",Android Mobile,Broadband,67
+SMT-0013-02,0496/2026,Md. Harsh Balan,+91-3791380192,X / Twitter,Session Activity,2026-09-05 14:09:11,"Lower Parel, Mumbai",Android Mobile,Broadband,206
+SMT-0013-03,0496/2026,Md. Harsh Balan,+91-3791380192,WhatsApp,Session Activity,2026-09-06 09:21:11,"Worli, Mumbai",Android Mobile,Wi-Fi,135
+SMT-0014-01,0386/2026,Md. Harrison Ravi,+91-6661183347,Facebook,Session Activity,2026-07-08 15:02:09,"Worli, Mumbai",Android Mobile,Broadband,310
+SMT-0014-02,0386/2026,Md. Harrison Ravi,+91-6661183347,Facebook,Logout,2026-07-08 22:46:09,"Lower Parel, Mumbai",Desktop Browser,Broadband,457
+SMT-0015-01,0565/2026,Md. Rushil Magar,+91-7506160630,Facebook,Session Activity,2026-08-13 06:25:29,"Kalachowki, Mumbai",Android Mobile,Mobile Data,443
+SMT-0016-01,0885/2026,Md. Rudra Rana,+91-5381675523,X / Twitter,Session Activity,2026-07-19 21:25:59,"Dadar, Mumbai",iPhone,Wi-Fi,289
+SMT-0016-02,0885/2026,Md. Rudra Rana,+91-5381675523,Facebook,Logout,2026-07-18 10:45:59,"Agripada, Mumbai",iPhone,Mobile Data,414
+SMT-0017-01,0742/2026,Md. Anthony Batta,+91-2747146789,Facebook,Logout,2026-07-14 18:04:17,"Worli, Mumbai",Android Mobile,Broadband,336
+SMT-0017-02,0742/2026,Md. Anthony Batta,+91-2747146789,Instagram,Session Activity,2026-07-13 03:40:17,"Agripada, Mumbai",Android Mobile,Mobile Data,88
+SMT-0017-03,0742/2026,Md. Anthony Batta,+91-2747146789,X / Twitter,Session Activity,2026-07-14 04:05:17,"Grant Road, Mumbai",Desktop Browser,Wi-Fi,483
+SMT-0018-01,0122/2026,Md. Dev Sami,+91-1514070672,Instagram,Logout,2026-07-24 01:01:43,"Byculla West, Mumbai",Desktop Browser,Mobile Data,143
+SMT-0018-02,0122/2026,Md. Dev Sami,+91-1514070672,Facebook,Session Activity,2026-07-25 20:51:43,"Byculla West, Mumbai",iPhone,Broadband,304
+SMT-0018-03,0122/2026,Md. Dev Sami,+91-1514070672,Facebook,Logout,2026-07-25 04:05:43,"Lower Parel, Mumbai",Android Mobile,Wi-Fi,178
+SMT-0019-01,0523/2026,Md. Max Narayan,+91-8057790544,X / Twitter,Login,2026-09-04 02:42:51,"Byculla West, Mumbai",iPhone,Broadband,148
+SMT-0020-01,0448/2026,Md. Hredhaan Purohit,+91-4796032267,Facebook,Session Activity,2026-08-18 01:38:41,"Dadar, Mumbai",iPhone,Broadband,123
+SMT-0020-02,0448/2026,Md. Hredhaan Purohit,+91-4796032267,Instagram,Session Activity,2026-08-18 05:34:41,"Kalachowki, Mumbai",Desktop Browser,Broadband,286
+SMT-0020-03,0448/2026,Md. Hredhaan Purohit,+91-4796032267,WhatsApp,Session Activity,2026-08-18 18:04:41,"Nagpada, Mumbai",iPhone,Broadband,199
+SMT-0021-01,0004/2026,Md. Chandran Setty,+91-8652256408,WhatsApp,Logout,2026-08-22 08:11:27,"Grant Road, Mumbai",iPhone,Broadband,454
+SMT-0021-02,0004/2026,Md. Chandran Setty,+91-8652256408,X / Twitter,Login,2026-08-21 08:35:27,"Grant Road, Mumbai",Desktop Browser,Mobile Data,477
+SMT-0021-03,0004/2026,Md. Chandran Setty,+91-8652256408,Facebook,Logout,2026-08-19 08:00:27,"Worli, Mumbai",iPhone,Wi-Fi,408
+SMT-0022-01,0161/2026,Md. Rishi Kumer,+91-1237354966,WhatsApp,Session Activity,2026-07-15 11:43:06,"Worli, Mumbai",iPhone,Mobile Data,485
+SMT-0022-02,0161/2026,Md. Rishi Kumer,+91-1237354966,Facebook,Login,2026-07-12 04:06:06,"Dadar, Mumbai",Desktop Browser,Mobile Data,123
+SMT-0022-03,0161/2026,Md. Rishi Kumer,+91-1237354966,WhatsApp,Logout,2026-07-14 10:40:06,"Lower Parel, Mumbai",Desktop Browser,Broadband,216
+SMT-0023-01,0543/2026,Md. Arin Hegde,+91-2431233397,X / Twitter,Session Activity,2026-07-18 12:26:16,"Nagpada, Mumbai",iPhone,Broadband,71
+SMT-0023-02,0543/2026,Md. Arin Hegde,+91-2431233397,WhatsApp,Login,2026-07-16 07:27:16,"Dadar, Mumbai",Desktop Browser,Mobile Data,264
+SMT-0023-03,0543/2026,Md. Arin Hegde,+91-2431233397,WhatsApp,Login,2026-07-17 03:55:16,"Nagpada, Mumbai",Android Mobile,Broadband,244
+SMT-0024-01,0725/2026,Md. Hardik Rout,+91-7364191969,X / Twitter,Logout,2026-07-30 06:29:51,"Nagpada, Mumbai",Desktop Browser,Wi-Fi,193
+SMT-0025-01,0598/2026,Md. Jeremiah Date,+91-3214324317,WhatsApp,Logout,2026-08-09 17:07:23,"Grant Road, Mumbai",Android Mobile,Broadband,472
+SMT-0026-01,0264/2026,Md. Patrick Dani,+91-7522013281,Facebook,Login,2026-07-11 23:20:39,"Grant Road, Mumbai",Android Mobile,Mobile Data,114
+SMT-0026-02,0264/2026,Md. Patrick Dani,+91-7522013281,Facebook,Login,2026-07-13 01:16:39,"Grant Road, Mumbai",Desktop Browser,Mobile Data,187
+SMT-0026-03,0264/2026,Md. Patrick Dani,+91-7522013281,Facebook,Logout,2026-07-12 11:48:39,"Dadar, Mumbai",Android Mobile,Wi-Fi,139
+SMT-0027-01,0262/2026,Md. Yug Desai,+91-3968500249,Instagram,Session Activity,2026-08-06 19:53:46,"Byculla West, Mumbai",Android Mobile,Mobile Data,86
+SMT-0027-02,0262/2026,Md. Yug Desai,+91-3968500249,Instagram,Logout,2026-08-06 01:31:46,"Lower Parel, Mumbai",iPhone,Mobile Data,383
+SMT-0028-01,0526/2026,Md. Benjamin Prabhu,+91-0672749907,Instagram,Login,2026-07-21 00:24:39,"Nagpada, Mumbai",Desktop Browser,Mobile Data,472
+SMT-0029-01,0035/2026,Md. Patrick Deshmukh,+91-7959552153,Facebook,Session Activity,2026-07-21 13:08:22,"Dadar, Mumbai",Android Mobile,Broadband,435
+SMT-0029-02,0035/2026,Md. Patrick Deshmukh,+91-7959552153,Facebook,Logout,2026-07-21 00:46:22,"Dadar, Mumbai",Desktop Browser,Mobile Data,387
+SMT-0029-03,0035/2026,Md. Patrick Deshmukh,+91-7959552153,Facebook,Logout,2026-07-23 13:11:22,"Grant Road, Mumbai",iPhone,Wi-Fi,179
+SMT-0030-01,0348/2026,Md. Agastya Saran,+91-2900346957,Facebook,Logout,2026-07-26 21:17:12,"Kalachowki, Mumbai",Android Mobile,Broadband,472
+SMT-0031-01,0980/2026,Md. Logan Choudhry,+91-4257193032,X / Twitter,Session Activity,2026-07-14 16:32:58,"Worli, Mumbai",Android Mobile,Mobile Data,333
+SMT-0031-02,0980/2026,Md. Logan Choudhry,+91-4257193032,X / Twitter,Session Activity,2026-07-17 07:43:58,"Byculla West, Mumbai",Desktop Browser,Wi-Fi,451
+SMT-0032-01,0234/2026,Md. Anthony Bora,+91-7205957035,Instagram,Logout,2026-07-25 14:54:18,"Grant Road, Mumbai",Desktop Browser,Wi-Fi,269
+SMT-0032-02,0234/2026,Md. Anthony Bora,+91-7205957035,X / Twitter,Login,2026-07-26 23:54:18,"Dadar, Mumbai",Android Mobile,Wi-Fi,275
+SMT-0032-03,0234/2026,Md. Anthony Bora,+91-7205957035,Instagram,Login,2026-07-27 21:38:18,"Kalachowki, Mumbai",Desktop Browser,Mobile Data,401
+SMT-0033-01,0441/2026,Md. Tanveer Deol,+91-0918049584,WhatsApp,Login,2026-07-18 23:57:06,"Byculla West, Mumbai",Desktop Browser,Broadband,89
+SMT-0033-02,0441/2026,Md. Tanveer Deol,+91-0918049584,Instagram,Login,2026-07-15 16:19:06,"Kalachowki, Mumbai",Android Mobile,Wi-Fi,446
+SMT-0034-01,0834/2026,Md. Isaiah Chauhan,+91-3321340914,X / Twitter,Login,2026-08-25 18:15:07,"Agripada, Mumbai",iPhone,Mobile Data,82
+SMT-0034-02,0834/2026,Md. Isaiah Chauhan,+91-3321340914,X / Twitter,Logout,2026-08-26 23:10:07,"Worli, Mumbai",iPhone,Broadband,483
+SMT-0034-03,0834/2026,Md. Isaiah Chauhan,+91-3321340914,Instagram,Login,2026-08-27 18:54:07,"Lower Parel, Mumbai",Desktop Browser,Mobile Data,77
+SMT-0035-01,0703/2026,Md. Hemang Krish,+91-9002004587,Instagram,Logout,2026-07-18 07:16:13,"Kalachowki, Mumbai",Desktop Browser,Mobile Data,205
+SMT-0036-01,0185/2026,Md. Isaiah Bala,+91-1321286781,Facebook,Logout,2026-08-03 12:56:24,"Dadar, Mumbai",Android Mobile,Wi-Fi,228
+SMT-0036-02,0185/2026,Md. Isaiah Bala,+91-1321286781,Instagram,Login,2026-08-03 08:54:24,"Nagpada, Mumbai",iPhone,Wi-Fi,94
+SMT-0036-03,0185/2026,Md. Isaiah Bala,+91-1321286781,Facebook,Session Activity,2026-08-05 19:04:24,"Dadar, Mumbai",iPhone,Wi-Fi,223
+SMT-0037-01,0559/2026,Md. Kalpit Bhattacharyya,+91-4386296167,Facebook,Login,2026-08-20 19:36:32,"Byculla West, Mumbai",iPhone,Broadband,488
+SMT-0037-02,0559/2026,Md. Kalpit Bhattacharyya,+91-4386296167,X / Twitter,Login,2026-08-21 12:47:32,"Lower Parel, Mumbai",iPhone,Broadband,273
+SMT-0037-03,0559/2026,Md. Kalpit Bhattacharyya,+91-4386296167,Instagram,Session Activity,2026-08-21 08:25:32,"Kalachowki, Mumbai",iPhone,Broadband,383
+SMT-0038-01,0074/2026,Md. Indrajit Butala,+91-5057041021,X / Twitter,Login,2026-08-04 19:18:10,"Lower Parel, Mumbai",Android Mobile,Mobile Data,121
+SMT-0039-01,0125/2026,Md. Fiyaz D’Alia,+91-4701027857,WhatsApp,Session Activity,2026-08-08 23:05:47,"Grant Road, Mumbai",iPhone,Broadband,320
+SMT-0040-01,0143/2026,Md. Qadim Gaba,+91-5052780788,Instagram,Logout,2026-07-30 20:06:07,"Agripada, Mumbai",Desktop Browser,Broadband,190
+SMT-0041-01,0497/2026,Md. Saksham Morar,+91-3426685979,X / Twitter,Login,2026-07-24 00:40:48,"Worli, Mumbai",Desktop Browser,Wi-Fi,392
+SMT-0042-01,0261/2026,Md. Mitesh Shankar,+91-7739068640,WhatsApp,Login,2026-09-08 02:03:59,"Grant Road, Mumbai",Android Mobile,Broadband,231
+SMT-0042-02,0261/2026,Md. Mitesh Shankar,+91-7739068640,Instagram,Logout,2026-09-05 04:54:59,"Agripada, Mumbai",Android Mobile,Broadband,310
+SMT-0042-03,0261/2026,Md. Mitesh Shankar,+91-7739068640,Instagram,Login,2026-09-05 23:29:59,"Lower Parel, Mumbai",Desktop Browser,Wi-Fi,424
+SMT-0043-01,0683/2026,Md. Yug Mody,+91-2595727182,Instagram,Logout,2026-09-04 22:25:49,"Grant Road, Mumbai",Android Mobile,Broadband,52
+SMT-0044-01,0051/2026,Md. Bahadurjit Sachar,+91-9660560031,Facebook,Login,2026-08-17 05:55:56,"Lower Parel, Mumbai",iPhone,Wi-Fi,185
+SMT-0044-02,0051/2026,Md. Bahadurjit Sachar,+91-9660560031,WhatsApp,Session Activity,2026-08-18 06:55:56,"Dadar, Mumbai",iPhone,Wi-Fi,481
+SMT-0044-03,0051/2026,Md. Bahadurjit Sachar,+91-9660560031,Instagram,Session Activity,2026-08-16 03:55:56,"Grant Road, Mumbai",iPhone,Broadband,140
+SMT-0045-01,0605/2026,Md. Nachiket Prasad,+91-8362086073,WhatsApp,Session Activity,2026-08-22 20:18:06,"Nagpada, Mumbai",Desktop Browser,Broadband,353
+SMT-0046-01,0456/2026,Md. Pranav Vig,+91-2608215843,Facebook,Session Activity,2026-08-26 11:22:48,"Byculla West, Mumbai",Android Mobile,Broadband,236
+SMT-0047-01,0107/2026,Md. Ekalinga Pall,+91-6970255137,Facebook,Login,2026-08-21 23:37:57,"Agripada, Mumbai",Desktop Browser,Mobile Data,337
+SMT-0047-02,0107/2026,Md. Ekalinga Pall,+91-6970255137,WhatsApp,Login,2026-08-21 08:12:57,"Byculla West, Mumbai",iPhone,Mobile Data,188
+SMT-0047-03,0107/2026,Md. Ekalinga Pall,+91-6970255137,Facebook,Session Activity,2026-08-21 09:28:57,"Lower Parel, Mumbai",Desktop Browser,Wi-Fi,272
+SMT-0048-01,0460/2026,Md. Shaurya Srivastava,+91-5008508772,WhatsApp,Logout,2026-08-08 08:21:57,"Lower Parel, Mumbai",iPhone,Broadband,303
+SMT-0048-02,0460/2026,Md. Shaurya Srivastava,+91-5008508772,Instagram,Session Activity,2026-08-08 02:00:57,"Agripada, Mumbai",iPhone,Broadband,218
+SMT-0049-01,0565/2026,Md. Samesh Sood,+91-1995891111,WhatsApp,Logout,2026-08-21 03:32:16,"Agripada, Mumbai",Desktop Browser,Wi-Fi,153
+SMT-0050-01,0593/2026,Md. Agastya Handa,+91-7193425749,Instagram,Session Activity,2026-08-25 04:55:55,"Worli, Mumbai",iPhone,Broadband,287
+SMT-0050-02,0593/2026,Md. Agastya Handa,+91-7193425749,Facebook,Logout,2026-08-22 23:46:55,"Worli, Mumbai",Desktop Browser,Broadband,206
+SMT-0050-03,0593/2026,Md. Agastya Handa,+91-7193425749,X / Twitter,Logout,2026-08-22 14:25:55,"Grant Road, Mumbai",iPhone,Mobile Data,127
+SMT-0051-01,0213/2026,Md. Dalbir Sani,+91-6251985492,Facebook,Logout,2026-07-28 00:42:44,"Kalachowki, Mumbai",iPhone,Mobile Data,50
+SMT-0051-02,0213/2026,Md. Dalbir Sani,+91-6251985492,Instagram,Logout,2026-07-28 13:39:44,"Byculla West, Mumbai",iPhone,Broadband,192
+SMT-0052-01,0249/2026,Md. Onkar Bains,+91-4951590105,Instagram,Session Activity,2026-07-13 15:08:24,"Agripada, Mumbai",Desktop Browser,Broadband,112
+SMT-0053-01,0112/2026,Md. Gautam Som,+91-5649754475,WhatsApp,Logout,2026-07-29 18:06:07,"Grant Road, Mumbai",iPhone,Broadband,338
+SMT-0054-01,0664/2026,Md. Zayyan Hegde,+91-6133336862,X / Twitter,Logout,2026-08-29 12:47:54,"Dadar, Mumbai",Desktop Browser,Mobile Data,66
+SMT-0054-02,0664/2026,Md. Zayyan Hegde,+91-6133336862,X / Twitter,Login,2026-08-27 00:45:54,"Nagpada, Mumbai",Desktop Browser,Mobile Data,393
+SMT-0055-01,0513/2026,Md. Ayush Borde,+91-4593055006,Facebook,Logout,2026-08-18 07:06:45,"Agripada, Mumbai",Desktop Browser,Wi-Fi,163
+SMT-0055-02,0513/2026,Md. Ayush Borde,+91-4593055006,Facebook,Login,2026-08-16 08:58:45,"Agripada, Mumbai",Android Mobile,Mobile Data,156
+SMT-0056-01,0536/2026,Md. Ekansh Kaur,+91-4535929614,X / Twitter,Logout,2026-08-29 15:54:00,"Kalachowki, Mumbai",Android Mobile,Wi-Fi,235
+SMT-0056-02,0536/2026,Md. Ekansh Kaur,+91-4535929614,Facebook,Login,2026-08-30 18:03:00,"Dadar, Mumbai",Desktop Browser,Wi-Fi,203
+SMT-0056-03,0536/2026,Md. Ekansh Kaur,+91-4535929614,Instagram,Logout,2026-08-28 02:16:00,"Dadar, Mumbai",iPhone,Broadband,386
+SMT-0057-01,0615/2026,Md. Daksh Bhandari,+91-1440904968,WhatsApp,Login,2026-09-02 17:32:29,"Dadar, Mumbai",iPhone,Mobile Data,422
+SMT-0058-01,0933/2026,Md. Benjamin Kohli,+91-2290623652,X / Twitter,Session Activity,2026-07-22 15:39:06,"Dadar, Mumbai",Android Mobile,Wi-Fi,495
+SMT-0058-02,0933/2026,Md. Benjamin Kohli,+91-2290623652,WhatsApp,Login,2026-07-23 11:29:06,"Nagpada, Mumbai",Android Mobile,Mobile Data,325
+SMT-0058-03,0933/2026,Md. Benjamin Kohli,+91-2290623652,WhatsApp,Login,2026-07-24 22:10:06,"Dadar, Mumbai",iPhone,Mobile Data,337
+SMT-0059-01,0834/2026,Md. Liam Puri,+91-8776698401,Facebook,Logout,2026-08-16 10:28:04,"Grant Road, Mumbai",Desktop Browser,Wi-Fi,343
+SMT-0059-02,0834/2026,Md. Liam Puri,+91-8776698401,WhatsApp,Session Activity,2026-08-13 23:13:04,"Nagpada, Mumbai",Desktop Browser,Broadband,261
+SMT-0060-01,0584/2026,Md. Peter Kumer,+91-5919792976,Instagram,Logout,2026-08-02 03:00:24,"Dadar, Mumbai",Android Mobile,Broadband,172
+SMT-0060-02,0584/2026,Md. Peter Kumer,+91-5919792976,WhatsApp,Login,2026-08-01 13:32:24,"Agripada, Mumbai",iPhone,Wi-Fi,352
+SMT-0060-03,0584/2026,Md. Peter Kumer,+91-5919792976,Facebook,Login,2026-08-01 09:09:24,"Dadar, Mumbai",iPhone,Wi-Fi,146
+SMT-0061-01,0843/2026,Md. Fariq Dutta,+91-4777708271,Facebook,Session Activity,2026-08-09 19:45:23,"Kalachowki, Mumbai",Android Mobile,Wi-Fi,182
+SMT-0062-01,0473/2026,Md. Azad Sinha,+91-4991863097,Instagram,Login,2026-07-25 06:29:24,"Dadar, Mumbai",Android Mobile,Wi-Fi,438
+SMT-0063-01,0565/2026,Md. Nathan Singh,+91-6642357946,WhatsApp,Logout,2026-08-21 05:35:29,"Worli, Mumbai",Desktop Browser,Mobile Data,492
+SMT-0063-02,0565/2026,Md. Nathan Singh,+91-6642357946,X / Twitter,Logout,2026-08-21 18:56:29,"Kalachowki, Mumbai",iPhone,Broadband,238
+SMT-0063-03,0565/2026,Md. Nathan Singh,+91-6642357946,WhatsApp,Logout,2026-08-22 11:25:29,"Byculla West, Mumbai",iPhone,Wi-Fi,254
+SMT-0064-01,0236/2026,Md. Balendra Bhagat,+91-9009090255,Facebook,Logout,2026-08-16 10:05:10,"Dadar, Mumbai",Desktop Browser,Broadband,416
+SMT-0064-02,0236/2026,Md. Balendra Bhagat,+91-9009090255,Facebook,Logout,2026-08-14 07:50:10,"Kalachowki, Mumbai",Desktop Browser,Broadband,480
+SMT-0065-01,0492/2026,Md. Rehaan Chaudry,+91-2666689173,Facebook,Logout,2026-08-16 19:36:32,"Lower Parel, Mumbai",Android Mobile,Broadband,302
+SMT-0065-02,0492/2026,Md. Rehaan Chaudry,+91-2666689173,Instagram,Login,2026-08-18 10:05:32,"Byculla West, Mumbai",Desktop Browser,Broadband,446
+SMT-0066-01,0838/2026,Md. Girindra Mohan,+91-1373261345,X / Twitter,Login,2026-08-18 21:56:33,"Grant Road, Mumbai",Android Mobile,Mobile Data,106
+SMT-0067-01,0266/2026,Md. Samuel Buch,+91-3771182258,Facebook,Session Activity,2026-08-14 13:56:20,"Nagpada, Mumbai",iPhone,Wi-Fi,123
+SMT-0067-02,0266/2026,Md. Samuel Buch,+91-3771182258,Facebook,Session Activity,2026-08-13 09:53:20,"Worli, Mumbai",Android Mobile,Mobile Data,161
+SMT-0067-03,0266/2026,Md. Samuel Buch,+91-3771182258,Facebook,Login,2026-08-13 18:30:20,"Agripada, Mumbai",Android Mobile,Mobile Data,98
+SMT-0068-01,0687/2026,Md. Joshua Prasad,+91-3270626021,WhatsApp,Session Activity,2026-07-10 20:56:39,"Agripada, Mumbai",iPhone,Mobile Data,375
+SMT-0068-02,0687/2026,Md. Joshua Prasad,+91-3270626021,WhatsApp,Logout,2026-07-09 18:20:39,"Grant Road, Mumbai",iPhone,Wi-Fi,145
+SMT-0068-03,0687/2026,Md. Joshua Prasad,+91-3270626021,Facebook,Session Activity,2026-07-08 18:10:39,"Grant Road, Mumbai",iPhone,Mobile Data,204
+SMT-0069-01,0706/2026,Md. Mitesh Purohit,+91-6657400286,X / Twitter,Session Activity,2026-08-24 13:49:59,"Agripada, Mumbai",Desktop Browser,Broadband,363
+SMT-0070-01,0175/2026,Md. Tanish Kurian,+91-1259311617,Instagram,Logout,2026-08-21 23:17:03,"Dadar, Mumbai",Desktop Browser,Wi-Fi,496
+SMT-0070-02,0175/2026,Md. Tanish Kurian,+91-1259311617,WhatsApp,Logout,2026-08-21 16:37:03,"Kalachowki, Mumbai",Android Mobile,Wi-Fi,253
+SMT-0070-03,0175/2026,Md. Tanish Kurian,+91-1259311617,Facebook,Login,2026-08-20 13:49:03,"Grant Road, Mumbai",Desktop Browser,Wi-Fi,147
+SMT-0071-01,0444/2026,Md. Wriddhish Buch,+91-7459241887,X / Twitter,Login,2026-09-05 13:50:35,"Lower Parel, Mumbai",Android Mobile,Broadband,310
+SMT-0072-01,0711/2026,Md. Samarth Bains,+91-7968891796,Facebook,Session Activity,2026-08-25 17:40:06,"Byculla West, Mumbai",Desktop Browser,Mobile Data,107
+SMT-0072-02,0711/2026,Md. Samarth Bains,+91-7968891796,Instagram,Logout,2026-08-24 12:20:06,"Agripada, Mumbai",Desktop Browser,Wi-Fi,196
+SMT-0073-01,0285/2026,Md. Om Batta,+91-0256443690,WhatsApp,Login,2026-08-16 14:10:42,"Byculla West, Mumbai",Desktop Browser,Wi-Fi,89
+SMT-0073-02,0285/2026,Md. Om Batta,+91-0256443690,Instagram,Login,2026-08-16 23:23:42,"Agripada, Mumbai",Android Mobile,Broadband,93
+SMT-0074-01,0928/2026,Md. Zehaan Grewal,+91-5215205141,X / Twitter,Session Activity,2026-08-22 02:26:48,"Byculla West, Mumbai",Android Mobile,Mobile Data,225
+SMT-0075-01,0639/2026,Md. Isaac Mishra,+91-7707941808,Instagram,Logout,2026-08-15 11:52:49,"Agripada, Mumbai",iPhone,Mobile Data,336
+SMT-0076-01,0613/2026,Md. Udant Khurana,+91-8772432102,Facebook,Session Activity,2026-08-10 22:52:07,"Kalachowki, Mumbai",Desktop Browser,Wi-Fi,215
+SMT-0077-01,0400/2026,Md. Ansh Bhandari,+91-7821137424,Facebook,Logout,2026-07-22 01:32:37,"Byculla West, Mumbai",iPhone,Broadband,459
+SMT-0077-02,0400/2026,Md. Ansh Bhandari,+91-7821137424,WhatsApp,Session Activity,2026-07-21 03:21:37,"Byculla West, Mumbai",Desktop Browser,Broadband,148
+SMT-0078-01,0311/2026,Md. Ansh Rau,+91-0362195959,WhatsApp,Login,2026-07-26 05:59:10,"Worli, Mumbai",Android Mobile,Wi-Fi,427
+SMT-0078-02,0311/2026,Md. Ansh Rau,+91-0362195959,Instagram,Logout,2026-07-25 15:15:10,"Dadar, Mumbai",iPhone,Mobile Data,212
+SMT-0078-03,0311/2026,Md. Ansh Rau,+91-0362195959,WhatsApp,Login,2026-07-24 10:13:10,"Lower Parel, Mumbai",iPhone,Mobile Data,332
+SMT-0079-01,0172/2026,Md. Vedant Sha,+91-5190931048,X / Twitter,Login,2026-08-23 07:55:24,"Worli, Mumbai",Android Mobile,Mobile Data,204
+SMT-0079-02,0172/2026,Md. Vedant Sha,+91-5190931048,X / Twitter,Session Activity,2026-08-22 06:47:24,"Byculla West, Mumbai",Desktop Browser,Broadband,259
+SMT-0079-03,0172/2026,Md. Vedant Sha,+91-5190931048,Facebook,Login,2026-08-22 00:39:24,"Dadar, Mumbai",Android Mobile,Mobile Data,283
+SMT-0080-01,0601/2026,Md. Charan Rege,+91-5663787453,X / Twitter,Login,2026-08-01 17:02:59,"Byculla West, Mumbai",Android Mobile,Broadband,378
+SMT-0080-02,0601/2026,Md. Charan Rege,+91-5663787453,WhatsApp,Session Activity,2026-08-01 07:39:59,"Worli, Mumbai",Desktop Browser,Wi-Fi,173
+SMT-0080-03,0601/2026,Md. Charan Rege,+91-5663787453,WhatsApp,Session Activity,2026-08-03 10:50:59,"Kalachowki, Mumbai",iPhone,Broadband,182
+SMT-0081-01,0312/2026,Md. Ranveer Divan,+91-6070042716,Instagram,Login,2026-07-17 23:29:12,"Kalachowki, Mumbai",Android Mobile,Mobile Data,192
+SMT-0082-01,0761/2026,Md. Gaurang Khosla,+91-6433686030,X / Twitter,Session Activity,2026-07-25 05:05:55,"Nagpada, Mumbai",Desktop Browser,Mobile Data,355
+SMT-0082-02,0761/2026,Md. Gaurang Khosla,+91-6433686030,Instagram,Login,2026-07-25 00:09:55,"Nagpada, Mumbai",iPhone,Mobile Data,262
+SMT-0082-03,0761/2026,Md. Gaurang Khosla,+91-6433686030,Instagram,Session Activity,2026-07-25 09:12:55,"Kalachowki, Mumbai",Android Mobile,Broadband,491
+SMT-0083-01,0126/2026,Md. Rishi Palla,+91-2482634459,Instagram,Login,2026-07-16 10:46:14,"Worli, Mumbai",Desktop Browser,Wi-Fi,165
+SMT-0083-02,0126/2026,Md. Rishi Palla,+91-2482634459,Facebook,Logout,2026-07-17 10:55:14,"Kalachowki, Mumbai",Desktop Browser,Mobile Data,291
+SMT-0084-01,0490/2026,Md. Balvan Kamdar,+91-8333943416,Facebook,Session Activity,2026-08-02 01:44:25,"Worli, Mumbai",iPhone,Broadband,270
+SMT-0085-01,0858/2026,Md. Isaac Natt,+91-0451095089,WhatsApp,Logout,2026-08-28 13:41:23,"Worli, Mumbai",Android Mobile,Wi-Fi,127
+SMT-0085-02,0858/2026,Md. Isaac Natt,+91-0451095089,X / Twitter,Login,2026-08-27 17:37:23,"Worli, Mumbai",Desktop Browser,Broadband,347
+SMT-0085-03,0858/2026,Md. Isaac Natt,+91-0451095089,Facebook,Session Activity,2026-08-25 16:56:23,"Worli, Mumbai",Desktop Browser,Mobile Data,312
+SMT-0086-01,0774/2026,Md. Wridesh Loke,+91-1076670758,Instagram,Login,2026-08-29 22:46:49,"Grant Road, Mumbai",Android Mobile,Broadband,175
+SMT-0087-01,0708/2026,Md. Siddharth Roy,+91-9108620606,WhatsApp,Login,2026-07-24 05:15:30,"Agripada, Mumbai",Desktop Browser,Mobile Data,405
+SMT-0088-01,0898/2026,Md. Andrew Cherian,+91-7080792156,Facebook,Logout,2026-08-04 06:21:40,"Lower Parel, Mumbai",Android Mobile,Wi-Fi,152
+SMT-0088-02,0898/2026,Md. Andrew Cherian,+91-7080792156,X / Twitter,Login,2026-08-04 07:35:40,"Byculla West, Mumbai",iPhone,Broadband,309
+SMT-0088-03,0898/2026,Md. Andrew Cherian,+91-7080792156,Facebook,Login,2026-08-05 08:35:40,"Lower Parel, Mumbai",iPhone,Broadband,489
+SMT-0089-01,0538/2026,Md. Parth Pandya,+91-3739677774,WhatsApp,Logout,2026-08-12 15:06:07,"Grant Road, Mumbai",Desktop Browser,Broadband,391
+SMT-0089-02,0538/2026,Md. Parth Pandya,+91-3739677774,WhatsApp,Logout,2026-08-13 15:19:07,"Kalachowki, Mumbai",Desktop Browser,Mobile Data,309
+SMT-0089-03,0538/2026,Md. Parth Pandya,+91-3739677774,WhatsApp,Session Activity,2026-08-14 06:14:07,"Nagpada, Mumbai",Desktop Browser,Mobile Data,303
+SMT-0090-01,0254/2026,Md. Bahadurjit Sinha,+91-1408192283,WhatsApp,Session Activity,2026-08-22 09:41:26,"Agripada, Mumbai",Desktop Browser,Mobile Data,238
+SMT-0091-01,0745/2026,Md. Mohammed Dave,+91-5251191004,WhatsApp,Logout,2026-07-29 15:59:28,"Nagpada, Mumbai",Android Mobile,Broadband,308
+SMT-0091-02,0745/2026,Md. Mohammed Dave,+91-5251191004,X / Twitter,Login,2026-07-31 05:56:28,"Kalachowki, Mumbai",Android Mobile,Broadband,232
+SMT-0092-01,0603/2026,Md. Balvan Shroff,+91-1745742151,Facebook,Session Activity,2026-07-10 12:52:27,"Kalachowki, Mumbai",iPhone,Wi-Fi,276
+SMT-0093-01,0492/2026,Md. Siddharth Chakrabarti,+91-6655622192,X / Twitter,Login,2026-08-15 14:10:19,"Nagpada, Mumbai",Desktop Browser,Wi-Fi,329
+SMT-0093-02,0492/2026,Md. Siddharth Chakrabarti,+91-6655622192,X / Twitter,Login,2026-08-16 05:04:19,"Nagpada, Mumbai",Desktop Browser,Broadband,272
+SMT-0093-03,0492/2026,Md. Siddharth Chakrabarti,+91-6655622192,WhatsApp,Logout,2026-08-15 00:19:19,"Dadar, Mumbai",iPhone,Mobile Data,54
+SMT-0094-01,0184/2026,Md. Aarush Lal,+91-2323133336,WhatsApp,Session Activity,2026-07-26 12:59:29,"Agripada, Mumbai",iPhone,Broadband,84
+SMT-0094-02,0184/2026,Md. Aarush Lal,+91-2323133336,X / Twitter,Logout,2026-07-24 01:58:29,"Byculla West, Mumbai",Android Mobile,Broadband,304
+SMT-0095-01,0986/2026,Md. Chaitanya Dua,+91-1122040051,WhatsApp,Logout,2026-09-01 04:24:18,"Worli, Mumbai",iPhone,Mobile Data,196
+SMT-0096-01,0258/2026,Md. Yash Ramakrishnan,+91-7128338483,Instagram,Login,2026-08-20 11:00:07,"Grant Road, Mumbai",Desktop Browser,Broadband,256
+SMT-0097-01,0710/2026,Md. Aarnav Chaudhry,+91-6729681915,Facebook,Session Activity,2026-08-31 15:29:46,"Grant Road, Mumbai",Desktop Browser,Mobile Data,248
+SMT-0097-02,0710/2026,Md. Aarnav Chaudhry,+91-6729681915,X / Twitter,Logout,2026-08-29 17:31:46,"Dadar, Mumbai",Android Mobile,Broadband,273
+SMT-0097-03,0710/2026,Md. Aarnav Chaudhry,+91-6729681915,Facebook,Logout,2026-09-02 04:57:46,"Lower Parel, Mumbai",iPhone,Wi-Fi,279
+SMT-0098-01,0582/2026,Md. Brijesh Comar,+91-8294914394,Instagram,Session Activity,2026-08-09 10:00:21,"Byculla West, Mumbai",Desktop Browser,Wi-Fi,434
+SMT-0098-02,0582/2026,Md. Brijesh Comar,+91-8294914394,WhatsApp,Login,2026-08-09 18:33:21,"Kalachowki, Mumbai",Desktop Browser,Broadband,444
+SMT-0099-01,0977/2026,Md. Yug Bir,+91-7546091865,Instagram,Session Activity,2026-08-22 06:52:37,"Lower Parel, Mumbai",Desktop Browser,Wi-Fi,284
+SMT-0099-02,0977/2026,Md. Yug Bir,+91-7546091865,Instagram,Login,2026-08-21 15:59:37,"Worli, Mumbai",Desktop Browser,Mobile Data,226
+SMT-0099-03,0977/2026,Md. Yug Bir,+91-7546091865,Instagram,Session Activity,2026-08-24 07:08:37,"Agripada, Mumbai",iPhone,Broadband,454
+SMT-0100-01,0856/2026,Md. Manbir Datta,+91-2508766754,X / Twitter,Logout,2026-07-27 18:50:01,"Dadar, Mumbai",Desktop Browser,Mobile Data,273
+SMT-0100-02,0856/2026,Md. Manbir Datta,+91-2508766754,Instagram,Session Activity,2026-07-26 13:54:01,"Byculla West, Mumbai",Desktop Browser,Broadband,88
+SMT-0100-03,0856/2026,Md. Manbir Datta,+91-2508766754,Instagram,Login,2026-07-26 12:15:01,"Dadar, Mumbai",iPhone,Broadband,313
